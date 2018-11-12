@@ -1,0 +1,74 @@
+from requests import get
+from bs4 import BeautifulSoup
+import re
+url = 'https://movies.yahoo.com.tw/movieinfo_main.html/id=5644'
+
+response = get(url)
+#print(response.text[:1000])
+
+html_soup = BeautifulSoup(response.text, 'html.parser')
+
+movie_containers = html_soup.find('div', class_ = 'movie_intro_info _c')
+print("電影名稱：",movie_containers.h1.text,"\t",movie_containers.h3.text)
+
+
+date = html_soup.find('div', class_ = 'movie_intro_info_r')
+
+
+print(date.text[684:1000])
+
+#Name = html_soup.find('div', class_ = 'level_name_box')
+#print("類型：",Name.text)
+
+#length = html_soup.find('div', class_ = 'movie_intro_info_r')
+#print(length.p.span.text)
+
+Synopsis = html_soup.find('div', class_ = 'gray_infobox_inner')
+print('劇情介紹：',Synopsis.span.text)
+
+
+print("                                                           ")
+#first_movie = movie_containers[0]
+#print("")
+
+date = html_soup.find('div', {'class' , 'movie_intro_info_r'})
+
+spandate = date.find_all('span')
+
+for i in spandate[0:4]:
+    print(i.get_text())
+
+
+
+people = html_soup.find('div', {'class' , 'movie_intro_list'})
+people = people.get_text()
+people = people.strip()
+#print("導演 :",people)
+
+
+actor = date.text[320:684]
+
+actor = actor.strip()
+
+uu = actor.split()
+#print(uu)
+
+print('                                ')
+print(uu[0])
+print(uu[1],uu[2])
+print(uu[4],uu[5])
+print(uu[7],uu[8])
+print(uu[10],uu[11],uu[12])
+
+print('                                ')
+
+#level_name_box
+a = []
+#level_name_box
+kind = html_soup.find('div', class_ = 'level_name_box')
+
+kind = str(kind.text)
+kind = kind.strip()
+kind = kind.split()
+print('類型：',kind)
+
