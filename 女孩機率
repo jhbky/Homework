@@ -1,0 +1,58 @@
+import csv
+import os
+import re
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import random
+
+
+p = 0
+ 
+b = []
+
+number = 0
+pro = 0
+n = input("請輸入一個數字 :  ")
+n = int(n)
+for i in range(0,n):
+
+    
+    
+    for j in range(0,3):
+        a = random.randint(0,99)
+        if a<=48:
+        
+            
+            b.append(True,)
+            
+        else:
+            
+            b.append(False,)
+            
+
+
+
+for i in range(0,len(b),3):
+    
+    
+   
+
+
+    new = np.reshape(b, (n, 3))
+
+
+
+
+
+   
+for index in range(len(new)):
+    if new[index,0] == [False] :
+        if new[index,1] == [False]:
+             if new[index,2] == [False]:   
+                print(index)
+                number = number +1
+                pro = (n-number)/n
+
+print("number = ",number)
+print("pro = ",pro)      
